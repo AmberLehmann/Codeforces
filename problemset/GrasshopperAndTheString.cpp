@@ -89,9 +89,35 @@ const bool local_ = true;
 const bool local_ = false;
 #endif */
 
+bool vowel(char c) {
+    if (c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U' || c == 'Y') {
+        return true;
+    }
+    return false;
+}
+
 const bool run = local_ ? 0 : 1;
 void solve(int T = 0) {
-  cout << "TODO";
+    string str;
+    cin >> str;
+    int max = -1;
+    int count = 1;
+    for(int i = 0; i < str.size(); i++) {
+        if(vowel(str.at(i))) {
+            if (count > max) {
+                max = count;
+            }
+            count = 0;
+        }
+        count++;
+    }
+    if(!vowel(str.at(str.size() - 1))) {
+        if (count > max) {
+            max = count;
+        }
+    }
+    pr(max);
+    cout << max; 
 } 
 
 int main() {
@@ -105,7 +131,7 @@ int main() {
     int T = 1;
     // if (local_)
     // if (!run)
-    cin >> T;
+    // cin >> T;
     for (int t = 0; t < T; t++) {
         pr(t); prs(string(50, '-'));
         solve(t);
